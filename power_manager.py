@@ -1,4 +1,5 @@
 from debugcolor import co
+import board
 
 class Task:
 
@@ -41,6 +42,7 @@ class Task:
         Turns power buses off and on depending on the voltage level of the battery.
         """
         eps = 0x18
+        i2c = board.I2C()
         if self.state == State.OFF:
             return "Satellite is off."
 

@@ -1,4 +1,5 @@
 from debugcolor import co
+import board
 
 class Task:
 
@@ -42,6 +43,8 @@ class Task:
         Returns the voltage, current, and temp from the battery in a list.
         """
         eps = 0x18
+        i2c = board.I2C()
+
         params = [(Read.VOLTAGE, batteryvolts), (Read.BATCURRENT, batterycurrent),
                   (Read.TEMPERATURE, temperature)]
         for param in params:

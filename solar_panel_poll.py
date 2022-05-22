@@ -1,4 +1,5 @@
 from debugcolor import co
+import board
 
 class Task:
 
@@ -42,6 +43,8 @@ class Task:
         Returns the voltages and plus/minus axes currents for each face of the cubesat in a list.
         """
         eps = 0x18
+        i2c = board.I2C()
+
         params = [(Read.XVOLTS, xvolts), (Read.XMINCURRENT, xmincurrent),
                   (Read.XPLUSCURRENT, xpluscurrent), (Read.YVOLTS, yvolts),
                   (Read.YMINCURRENT, ymincurrent), (Read.YPLUSCURRENT, ypluscurrent),
