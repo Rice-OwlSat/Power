@@ -40,6 +40,7 @@ class Task:
         """
         Turns power buses off and on depending on the voltage level of the battery.
         """
+        eps = 0x18
         if self.state == State.OFF:
             return "Satellite is off."
 

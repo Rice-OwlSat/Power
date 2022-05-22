@@ -31,6 +31,7 @@ class Task:
         :param msg: Debug message to print
         :param level: > 1 will print as a sub-level
         """
+        msg = params
         if level==1:
             print('{:>30} {}'.format('['+co(msg=self.name,color=self.color)+']',msg))
         else:
@@ -40,6 +41,7 @@ class Task:
         """
         Returns the voltages and plus/minus axes currents for each face of the cubesat in a list.
         """
+        eps = 0x18
         params = [(Read.XVOLTS, xvolts), (Read.XMINCURRENT, xmincurrent),
                   (Read.XPLUSCURRENT, xpluscurrent), (Read.YVOLTS, yvolts),
                   (Read.YMINCURRENT, ymincurrent), (Read.YPLUSCURRENT, ypluscurrent),

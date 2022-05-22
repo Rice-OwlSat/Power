@@ -40,6 +40,7 @@ class Task:
         """
         Provides framework for using write commands on the EPS.
         """
+        eps = 0x18
         response_dict: Dict[str, List[int]] = {
             Write.SELF_LOCK_ON: [0x300001],
             Write.SELF_LOCK_OFF: [0x300000],

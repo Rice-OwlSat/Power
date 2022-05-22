@@ -31,6 +31,7 @@ class Task:
         :param msg: Debug message to print
         :param level: > 1 will print as a sub-level
         """
+        msg = main_task()
         if level==1:
             print('{:>30} {}'.format('['+co(msg=self.name,color=self.color)+']',msg))
         else:
@@ -40,6 +41,7 @@ class Task:
         """
         Returns the voltage, current, and temp from the battery in a list.
         """
+        eps = 0x18
         params = [(Read.VOLTAGE, batteryvolts), (Read.BATCURRENT, batterycurrent),
                   (Read.TEMPERATURE, temperature)]
         for param in params:
@@ -53,7 +55,7 @@ class Task:
         }
 
         for param in params:
-            if self.state == State.ON_NORMAL or self.state == State.ON_LOW_POWER:
+            if (self.state == State.ON_NORMAL) or (self.state == State.ON_LOW_POWER):
                 try:
                     (to_write, result_conversion) = response_dict[param[0]]
                     i2c.writeto(eps, bytes(to_write), stop=False)
@@ -64,3 +66,4 @@ class Task:
                     print(f"Command {param} does not exist!")
             else:
                 return "Satellite is off."
+        return params
